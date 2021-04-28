@@ -6,12 +6,23 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 
-def 
+
+def parseToGames(file):
+    pgn = open("C:\\Users\\Dennis\\PycharmProjects\\pythonProject1\\games-bank\\%s" % file)
+    result = []
+    while True:
+        game = chess.pgn.read_game(pgn)
+        if game is None:
+            break
+        result.append(game)
+    return result
+
 
 if __name__ == '__main__':
-    print("hello")
-    pgn = open("C:\\Users\\Dennis\\PycharmProjects\\pythonProject1\\games-bank\\2021-03")
-    first_game = chess.pgn.read_game(pgn)
-    board = first_game.board()
+    games = parseToGames("2021-03.pgn")
+    board = games[0]
     print(board)
+
+
+
 
