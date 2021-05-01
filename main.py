@@ -6,28 +6,41 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 import time
-import datatable as dt
+import csv
+
+
+def write_csv(data):
+    with open('2021-03.csv', 'a') as outfile:
+        writer = csv.writer(outfile)
+        writer.writerow(data)
 
 
 def parseToGames(file):
-    pgn = open("C:\\Users\\Dennis\\PycharmProjects\\pythonProject1\\games-bank\\%s" % file) # Add correct column names
-    df = pd.DataFrame(columns=['PGN', 'Result', 'Avarage Rating', 'Rating Difference', 'Termination Type', 'Starting Position'])
-    dataPGN = []
-    dataStartPos = []
+    pgn = open("C:\\Users\\Dennis\\PycharmProjects\\pythonProject1\\games-bank\\%s" % file)
+    colnames = ['PGN', 'Event', 'Result', 'BlackElo', 'WhiteElo',
+                'FEN', 'Termination', 'TimeControl', 'UTCTime']
+    write_csv(colnames)
     while True:
-        # start = time.time()
         game = chess.pgn.read_game(pgn)
-        game
-        # end = time.time()
-        # print(end - start)
         if game is None:
             break
-        dataStartPos.append(game.board()) # Adds starting position
-        #dataPGN.append(game.)
-    return result
+        gameNode = game.game().headers
+        exporter = chess.pgn.StringExporter(headers=False, variations=True, comments=True)  # Game as string
+        pgn_string = game.accept(exporter)
+        write_csv([pgn_string, gameNode["Event"], gameNode["Result"], gameNode["BlackElo"], gameNode["WhiteElo"],
+                   gameNode["FEN"], gameNode["Termination"], gameNode["TimeControl"], gameNode["UTCTime"]])
 
 
 if __name__ == '__main__':
-    games = parseToGames("2021-03.pgn")
-    board = games[0]
-    print(board)
+    parseToGames("2021-03.pgn")
+    # games = parseToGames("2021-03.pgn")
+    # board = games[0]
+    # print(board)
+    # pgn = open("C:\\Users\\Dennis\\PycharmProjects\\pythonProject1\\games-bank\\2021-03.pgn")
+    # game = chess.pgn.read_game(pgn)
+    # print(game.game().headers["Event"])
+    # exporter = chess.pgn.StringExporter(headers=False, variations=True, comments=True)  # Game as string
+    # pgn_string = game.accept(exporter)
+    # write_csv(['hello', pgn_string])
+    # print(pgn_string)
+    # print(game.headers["BlackElo"])
