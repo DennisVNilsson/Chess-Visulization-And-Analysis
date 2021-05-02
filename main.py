@@ -15,8 +15,8 @@ def write_csv(data):
         writer.writerow(data)
 
 
-def parseToGames(file):
-    pgn = open("C:\\Users\\Dennis\\PycharmProjects\\pythonProject1\\games-bank\\%s" % file)
+def parseToGames(fromfile):
+    pgn = open("C:\\Users\\Dennis\\PycharmProjects\\pythonProject1\\games-bank\\%s" % fromfile)
     colnames = ['PGN', 'Event', 'Result', 'BlackElo', 'WhiteElo',
                 'FEN', 'Termination', 'TimeControl', 'UTCTime']
     write_csv(colnames)
@@ -33,14 +33,3 @@ def parseToGames(file):
 
 if __name__ == '__main__':
     parseToGames("2021-03.pgn")
-    # games = parseToGames("2021-03.pgn")
-    # board = games[0]
-    # print(board)
-    # pgn = open("C:\\Users\\Dennis\\PycharmProjects\\pythonProject1\\games-bank\\2021-03.pgn")
-    # game = chess.pgn.read_game(pgn)
-    # print(game.game().headers["Event"])
-    # exporter = chess.pgn.StringExporter(headers=False, variations=True, comments=True)  # Game as string
-    # pgn_string = game.accept(exporter)
-    # write_csv(['hello', pgn_string])
-    # print(pgn_string)
-    # print(game.headers["BlackElo"])
