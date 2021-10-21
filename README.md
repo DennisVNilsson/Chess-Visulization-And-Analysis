@@ -7,6 +7,6 @@ A documented report, comparing the results to heatmaps for the regular chess var
 
 # March 2021 games
 From the Jupyter notebook "Chess-Visulization-And-Analysis": Creating a heatmap visualizing the move tendencies requires us to, for every move in every game, count its' occurence. Generally, Python Pandas was used to handle the data and the games were parsed and intepreted using the [python-chess](https://github.com/niklasf/python-chess) library. 
-###### The function outputting the image was written by [Evan Zhang ](https://www.kaggle.com/ironicninja/visualizing-chess-game-length-and-piece-movement). 
+###### The function outputting the image was written by [Evan Zhang ](https://www.kaggle.com/ironicninja/visualizing-chess-game-length-and-piece-movement), and is here used in the final step of the project. 
 ![Removaltest](https://raw.githubusercontent.com/DennisVNilsson/Chess-Visulization-And-Analysis/master/imagesMarch2021/heatmap1March.png?raw=true). 
 
